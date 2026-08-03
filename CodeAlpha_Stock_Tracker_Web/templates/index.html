@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Portfolio Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <div class="logo">
+                <span class="icon">📈</span>
+                <h1>PortfolioTracker</h1>
+            </div>
+            <div class="total-value">
+                <p>Total Investment Value</p>
+                <h2 id="totalInvestment">$0.00</h2>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar: Available Stocks and Form -->
+            <aside class="panel add-stock-panel">
+                <h3>Trade Desk</h3>
+                <form id="addStockForm">
+                    <div class="form-group">
+                        <label for="tickerSelect">Select Asset</label>
+                        <select id="tickerSelect" required>
+                            <option value="" disabled selected>Loading assets...</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantityInput">Shares / Quantity</label>
+                        <input type="number" id="quantityInput" step="0.01" min="0.01" required placeholder="e.g., 5.5">
+                    </div>
+                    <button type="submit" class="btn primary-btn">Execute Trade</button>
+                    <div id="formError" class="error-msg hidden"></div>
+                </form>
+                
+                <div class="market-data">
+                    <h4>Live Market Prices</h4>
+                    <ul id="marketList">
+                        <!-- Filled via JS -->
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main Area: Portfolio Holdings -->
+            <section class="panel holdings-panel">
+                <div class="panel-header">
+                    <h3>Your Holdings</h3>
+                    <button id="resetBtn" class="btn danger-btn-outline">Clear Portfolio</button>
+                </div>
+                
+                <div class="table-container">
+                    <table id="portfolioTable">
+                        <thead>
+                            <tr>
+                                <th>Asset</th>
+                                <th class="text-right">Shares</th>
+                                <th class="text-right">Market Price</th>
+                                <th class="text-right">Total Value</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="portfolioBody">
+                            <!-- Filled via JS -->
+                            <tr id="emptyStateRow">
+                                <td colspan="5" class="empty-state">No assets in portfolio. Start trading!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Hangman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container glass-panel">
+        <header>
+            <h1>Hangman <span class="badge">Tech Edition</span></h1>
+            <p>Guess the technical terminology.</p>
+        </header>
+        
+        <div class="game-area">
+            <div class="hangman-display">
+                <svg viewBox="0 0 200 250" class="hangman-svg">
+                    <!-- Base & Pole -->
+                    <line x1="20" y1="230" x2="100" y2="230" class="draw-line structure" />
+                    <line x1="60" y1="230" x2="60" y2="20" class="draw-line structure" />
+                    <line x1="60" y1="20" x2="140" y2="20" class="draw-line structure" />
+                    <line x1="140" y1="20" x2="140" y2="50" class="draw-line structure" />
+                    
+                    <!-- Hangman Parts (Hidden by default) -->
+                    <circle cx="140" cy="70" r="20" class="body-part" id="part-1" /> <!-- Head -->
+                    <line x1="140" y1="90" x2="140" y2="150" class="body-part draw-line" id="part-2" /> <!-- Body -->
+                    <line x1="140" y1="100" x2="110" y2="130" class="body-part draw-line" id="part-3" /> <!-- Left Arm -->
+                    <line x1="140" y1="100" x2="170" y2="130" class="body-part draw-line" id="part-4" /> <!-- Right Arm -->
+                    <line x1="140" y1="150" x2="110" y2="190" class="body-part draw-line" id="part-5" /> <!-- Left Leg -->
+                    <line x1="140" y1="150" x2="170" y2="190" class="body-part draw-line" id="part-6" /> <!-- Right Leg -->
+                </svg>
+            </div>
+
+            <div class="word-display" id="wordDisplay">
+                <!-- Word tiles inserted here via JS -->
+            </div>
+            
+            <div class="status-message" id="statusMessage"></div>
+        </div>
+
+        <div class="keyboard" id="keyboard">
+            <!-- Keys inserted here via JS -->
+        </div>
+        
+        <div class="controls">
+            <button id="resetBtn" class="btn primary-btn">Play Again</button>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
